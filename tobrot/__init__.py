@@ -1,12 +1,7 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-# (c) Shrimadhav U K | gautamajay52
-
 import os
 import time
 import logging
 
-# the secret configuration specific things
 if bool(os.environ.get("ENV", False)):
     from tobrot.sample_config import Config
 else:
@@ -14,13 +9,11 @@ else:
 
 from logging.handlers import RotatingFileHandler
 
-# TODO: is there a better way?
 TG_BOT_TOKEN = Config.TG_BOT_TOKEN
 APP_ID = Config.APP_ID
 API_HASH = Config.API_HASH
 OWNER_ID = Config.OWNER_ID
 AUTH_CHANNEL = list(Config.AUTH_CHANNEL)
-AUTH_CHANNEL.append(539295917)
 AUTH_CHANNEL.append(OWNER_ID)
 AUTH_CHANNEL = list(set(AUTH_CHANNEL))
 DOWNLOAD_LOCATION = Config.DOWNLOAD_LOCATION
@@ -52,14 +45,12 @@ CLEAR_THUMBNAIL = Config.CLEAR_THUMBNAIL
 CLEAR_UNDELETED = Config.CLEAR_UNDELETED
 PYTDL_COMMAND = Config.PYTDL_COMMAND
 BOT_START_TIME = time.time()
-
 LOG_COMMAND = Config.LOG_COMMAND
 
 if os.path.exists("leecher.txt"):
 	with open("leecher.txt", "r+") as f_d:
 		f_d.truncate(0)
 
-# the logging things
 logging.basicConfig(
     level=logging.DEBUG,
     format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
