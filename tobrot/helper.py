@@ -38,6 +38,21 @@ async def is_admin(f, c, m):
 admins = filters.create(is_admin)
 
 
+async def AdminCheck(client, chat_id, user_id):
+    SELF = await client.get_chat_member(
+        chat_id=chat_id,
+        user_id=user_id
+    )
+    admin_strings = [
+        "creator",
+        "administrator"
+    ]
+    if SELF.status not in admin_strings:
+        return False
+    else:
+        return True
+
+
 async def copy_file(input_file, output_dir):
     output_file = os.path.join(
         output_dir,
